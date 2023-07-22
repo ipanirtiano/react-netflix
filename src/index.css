@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-color: #000000;
+    box-sizing: border-box;
+}
+
+.trailer{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: aqua;
+    height: 400px;
+}
