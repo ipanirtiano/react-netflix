@@ -48,9 +48,11 @@ const RowMovie = ({rowId, title, fetch}) => {
 
     return (
         <>
-            <h2 className="text-white font-bold md:text-xl p-4">{title}</h2>
-            <div className="relative flex items-center group mb-[20px]">
+            <h2 className="text-white font-semibold md:text-xl p-4">{title}</h2>
+
+            <div className="relative flex items-center group ">
             <span className="material-symbols-outlined absolute text-white text-2xl md:text-3xl left-0 z-[10] w-[50px] h-full  items-center justify-center pl-[5px] hidden group-hover:flex cursor-pointer" onClick={sliderLeft}>arrow_back_ios</span>
+
                 <div id={'slider' + rowId} className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative">   
                     { fetch === 'upcoming' ?
                     getMovieUpcoming ? getMovieUpcoming.map((movie, i) => {

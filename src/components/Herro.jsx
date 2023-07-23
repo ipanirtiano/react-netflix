@@ -29,20 +29,27 @@ const Herro = () => {
 
     return (
         <>
-            <div className="w-full h-[380px] md:h-[550px] text-white">
+            <div className="w-full h-[400px] md:h-[550px] text-white font-semibold">
+
             <div className="w-full h-full">
-                <div className="absolute w-full h-[380px] md:h-[550px] bg-gradient-to-r from-black"></div>
+                <div className="absolute w-full h-[400px] md:h-[550px] bg-gradient-to-r from-black"></div>
+
                 <img className="object-cover w-full h-full" src={`https://image.tmdb.org/t/p/original/${movieBanner?.backdrop_path}`} alt={movieBanner?.title} />
-                <div className="absolute w-full md:top-[10%] top-[100px] p-4 md:p-8">
-                    <h1 className="text-3xl md:text-5xl font-bold">{movieBanner?.title}</h1>
-                <div className="my-4">
-                    <button className=" bg-gray-300 text-black border-gray-300 py-2 px-5 hover:bg-red-600 hover:text-gray-300 transition-all">Play</button>
-                    <button className="border text-white ml-4 border-gray-300 py-2 px-5">Watch Later</button>
+
+                <div className="absolute w-full md:top-[20%] top-[100px] p-4 md:p-6">
+                    <h1 className="text-2xl md:text-5xl">{movieBanner?.title}</h1>
+
+                <div className="my-4 flex spax-2 font-thin">
+                    <button className="py-2 px-3 bg-red-600 hover:text-gray-300 transition-all flex items-center text-base"><span className="material-symbols-outlined mr-1">play_circle</span> Play</button>
+
+                    <button className="border text-white ml-4 border-gray-300 py-2 px-5 flex items-center"><span className="material-symbols-outlined mr-1">info</span>More Info</button>
                 </div>
-                <p className="text-gray-400 text-sm mb-1">Relased: {movieBanner?.release_date}</p>
-                <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200">{truncateString(movieBanner?.overview, 180)}</p>
+
+                <p className="text-gray-400 mb-1 text-xs md:text-base font-thin">Relased: {movieBanner?.release_date}</p>
+                <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200 text-xs md:text-lg font-thin">{truncateString(movieBanner?.overview, 180)}</p>
                 </div>
             </div>
+
         </div>
         </>
     )
