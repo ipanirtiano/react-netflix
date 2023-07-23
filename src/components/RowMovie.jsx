@@ -3,14 +3,14 @@ import { useStateProvider } from "../utils/StateProvider";
 import { actions } from "../utils/Constans";
 import { options } from "../request";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Movie from "./Movie";
-import { useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 
 const RowMovie = ({rowId, title, fetch}) => {
     const [{getMovieUpcoming, getMovieNowPlaying, getMoviePopular}, dispatch] = useStateProvider()
-    const navigate = useNavigate()
+    const [modal, setModal] = useState(false)
 
     useEffect(() => {
         const getListMovie = async () => {
@@ -42,7 +42,21 @@ const RowMovie = ({rowId, title, fetch}) => {
 
     const handleClick = (data) => {
         dispatch({type: actions.GET_MOVIE_DETAIL, data}) 
-        navigate(`/detail/${data.id}`)
+        setModal(true)
+
+
+            const getTrailer = async () => {
+                const trailer = await axios.get(`https://api.themoviedb.org/3/movie/${data.id}/videos`, options)
+                .then(response => response.data.results.find(vid => vid.type == 'Trailer'))
+                dispatch({type: actions.GET_MOVIE_TRAILER, trailer})
+
+            }
+            getTrailer()
+        
+    }
+
+    const closeModal = () => {
+        setModal(false)
     }
 
 
@@ -79,6 +93,9 @@ const RowMovie = ({rowId, title, fetch}) => {
                 </div>
                 <span className="material-symbols-outlined absolute text-white text-2xl md:text-3xl right-0 z-[10] w-[50px] h-full  items-center justify-center pl-[5px] hidden group-hover:flex cursor-pointer" onClick={sliderRight}>arrow_forward_ios</span>
             </div>
+
+
+            <Modal visible={modal} close={closeModal} />
         </>
     )
 }

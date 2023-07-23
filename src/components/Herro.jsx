@@ -1,23 +1,10 @@
-import { useEffect } from "react"
 import { useStateProvider } from "../utils/StateProvider"
-import { actions } from "../utils/Constans"
-import axios from "axios"
-import { options } from "../request"
+
 
 const Herro = () => {
-    const [{getMovieBanner}, dispatch] = useStateProvider()
+    const [{getMovieBanner}] = useStateProvider()
     const movieBanner = getMovieBanner[Math.floor(Math.random() * getMovieBanner.length)]
-
-    useEffect(() => {
-        const getListMovie = async () => {
-            const dataMovies = await axios.get(`https://api.themoviedb.org/3/movie/now_playing`, options)
-            .then(response => response.data.results)
-            //dispatch data getmovie list
-            dispatch({type: actions.GET_MOVIE_BANNER, dataMovies})
-        }
-        getListMovie()
-    },[dispatch])
-
+    
 
     const truncateString = (str, num) => {
         if(str?.length > num){
@@ -27,10 +14,10 @@ const Herro = () => {
         }
     }
 
+
     return (
         <>
             <div className="w-full h-[400px] md:h-[550px] text-white font-semibold">
-
             <div className="w-full h-full">
                 <div className="absolute w-full h-[400px] md:h-[550px] bg-gradient-to-r from-black"></div>
 
@@ -45,8 +32,8 @@ const Herro = () => {
                     <button className="border text-white ml-4 border-gray-300 py-2 px-5 flex items-center"><span className="material-symbols-outlined mr-1">info</span>More Info</button>
                 </div>
 
-                <p className="text-gray-400 mb-1 text-xs md:text-base font-thin">Relased: {movieBanner?.release_date}</p>
-                <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200 text-xs md:text-lg font-thin">{truncateString(movieBanner?.overview, 180)}</p>
+                <p className="text-gray-300 mb-1 text-xs md:text-base font-normal">Relased: {movieBanner?.release_date}</p>
+                <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-white text-xs md:text-lg font-normal">{truncateString(movieBanner?.overview, 180)}</p>
                 </div>
             </div>
 
