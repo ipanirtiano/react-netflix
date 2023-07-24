@@ -4,7 +4,6 @@ import { useStateProvider } from "../utils/StateProvider"
 const Herro = () => {
     const [{getMovieBanner}] = useStateProvider()
     const movieBanner = getMovieBanner[Math.floor(Math.random() * getMovieBanner.length)]
-    
 
     const truncateString = (str, num) => {
         if(str?.length > num){

@@ -4,9 +4,11 @@ export const initialState = {
     getMovieBanner: false,
     getMovieUpcoming: false,
     getMovieNowPlaying: false,
+    getMovieTopRated: false,
     getMoviePopular: false,
     getDetailMovie: false,
-    getMovieTrailer: false
+    getMovieTrailer: false,
+    getMovieGenre: false
 }
 
 const reducer = (state, action) => {
@@ -26,6 +28,11 @@ const reducer = (state, action) => {
                 ...state,
                 getMovieNowPlaying: action.dataMovies
             }
+        case actions.GET_MOVIE_TOP_RATED:
+            return {
+                ...state,
+                getMovieTopRated: action.dataMovies
+            }
         case actions.GET_MOVIE_POPULAR:
             return {
                 ...state,
@@ -40,6 +47,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 getMovieTrailer: action.trailer
+            }
+        case actions.GET_MOVIE_GENRES:
+            return {
+                ...state,
+                getMovieGenre: action.genre
             }
         default:
             return state
